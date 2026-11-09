@@ -1,0 +1,293 @@
+{
+  "formatVersion": 1,
+  "program": {
+    "name": "rtos_core.bin",
+    "language": "ARM:LE:32:v6",
+    "imageBase": "0x00000000",
+    "size": 1115136,
+    "sha256": "b3cb0c78595f78e355a8974d14c5557d3b96a28fa3ce0b5d061ad37251da9f55"
+  },
+  "symbols": [
+    {
+      "address": "0x00000000",
+      "name": "Reset",
+      "kind": "function"
+    },
+    {
+      "address": "0x00000004",
+      "name": "UndefinedInstruction",
+      "kind": "function"
+    },
+    {
+      "address": "0x00000008",
+      "name": "swi_stub_infinite_loop",
+      "kind": "function"
+    },
+    {
+      "address": "0x0000000c",
+      "name": "PrefetchAbort",
+      "kind": "function"
+    },
+    {
+      "address": "0x00000010",
+      "name": "DataAbort",
+      "kind": "function"
+    },
+    {
+      "address": "0x00000014",
+      "name": "NotUsed",
+      "kind": "function"
+    },
+    {
+      "address": "0x00000018",
+      "name": "IRQ",
+      "kind": "function"
+    },
+    {
+      "address": "0x0000001c",
+      "name": "FIQ",
+      "kind": "function"
+    },
+    {
+      "address": "0x00000114",
+      "name": "BooSt_Reset",
+      "kind": "function"
+    },
+    {
+      "address": "0x0000014c",
+      "name": "boost_mmu_setup",
+      "kind": "function"
+    },
+    {
+      "address": "0x00000150",
+      "name": "mill_rom_to_ram_copy",
+      "kind": "function"
+    },
+    {
+      "address": "0x000001a8",
+      "name": "crom_decompress_trigger",
+      "kind": "function"
+    },
+    {
+      "address": "0x00000424",
+      "name": "irq_dispatch_handler",
+      "kind": "function"
+    },
+    {
+      "address": "0x00000478",
+      "name": "rtos_init_kernel",
+      "kind": "function"
+    },
+    {
+      "address": "0x00001808",
+      "name": "memcpy_init",
+      "kind": "function"
+    },
+    {
+      "address": "0x0000182c",
+      "name": "memset_init",
+      "kind": "function"
+    },
+    {
+      "address": "0x00005a60",
+      "name": "lcd_init_ili9325",
+      "kind": "function"
+    },
+    {
+      "address": "0x00005af8",
+      "name": "spi_write_reg",
+      "kind": "function"
+    },
+    {
+      "address": "0x00005b44",
+      "name": "spi_write_seq",
+      "kind": "function"
+    },
+    {
+      "address": "0x00005b90",
+      "name": "lcd_spi_send_cmd",
+      "kind": "function"
+    },
+    {
+      "address": "0x00005c20",
+      "name": "lcd_set_draw_window",
+      "kind": "function"
+    },
+    {
+      "address": "0x00006098",
+      "name": "memcpy_byte",
+      "kind": "function"
+    },
+    {
+      "address": "0x000100e4",
+      "name": "fiq_dispatch_handler",
+      "kind": "function"
+    },
+    {
+      "address": "0x000103a4",
+      "name": "modD_block_lock",
+      "kind": "function"
+    },
+    {
+      "address": "0x000103ac",
+      "name": "modD_block_unlock",
+      "kind": "function"
+    },
+    {
+      "address": "0x000103b4",
+      "name": "modD_lock_variant",
+      "kind": "function"
+    },
+    {
+      "address": "0x000103bc",
+      "name": "modD_aux_lock",
+      "kind": "function"
+    },
+    {
+      "address": "0x000103c4",
+      "name": "modD_init",
+      "kind": "function"
+    },
+    {
+      "address": "0x000103cc",
+      "name": "modD_sem_give",
+      "kind": "function"
+    },
+    {
+      "address": "0x000103d4",
+      "name": "modD_sem_take",
+      "kind": "function"
+    },
+    {
+      "address": "0x000103dc",
+      "name": "modD_timeout_wait",
+      "kind": "function"
+    },
+    {
+      "address": "0x000103e4",
+      "name": "modD_priority_acquire",
+      "kind": "function"
+    },
+    {
+      "address": "0x000103ec",
+      "name": "modD_cleanup_release",
+      "kind": "function"
+    },
+    {
+      "address": "0x000103fc",
+      "name": "modD_alloc_sync_a",
+      "kind": "function"
+    },
+    {
+      "address": "0x00010404",
+      "name": "modD_alloc_sync_b",
+      "kind": "function"
+    },
+    {
+      "address": "0x00010424",
+      "name": "modD_bulk_sync_a",
+      "kind": "function"
+    },
+    {
+      "address": "0x0001042c",
+      "name": "modD_bulk_sync_b",
+      "kind": "function"
+    },
+    {
+      "address": "0x00010ea4",
+      "name": "delay_loop",
+      "kind": "function"
+    },
+    {
+      "address": "0x00012cb0",
+      "name": "irq_handler_table_lookup",
+      "kind": "function"
+    },
+    {
+      "address": "0x00013080",
+      "name": "irq_master_toggle",
+      "kind": "function"
+    },
+    {
+      "address": "0x000144f8",
+      "name": "i2c_sample_ack",
+      "kind": "function"
+    },
+    {
+      "address": "0x0001457c",
+      "name": "rtc_i2c_write_reg",
+      "kind": "function"
+    },
+    {
+      "address": "0x00015548",
+      "name": "timer_delay",
+      "kind": "function"
+    }
+  ],
+  "comments": [
+    {
+      "address": "0x000103a4",
+      "plate": "ModD: block_lock -> 0x45E46234"
+    },
+    {
+      "address": "0x000103ac",
+      "plate": "ModD: block_unlock -> 0x45E46244"
+    },
+    {
+      "address": "0x000103b4",
+      "plate": "ModD: lock_variant -> 0x45E45C9C"
+    },
+    {
+      "address": "0x000103bc",
+      "plate": "ModD: aux_lock -> 0x45E45BC4"
+    },
+    {
+      "address": "0x000103c4",
+      "plate": "ModD: init -> 0x45E40164"
+    },
+    {
+      "address": "0x000103cc",
+      "plate": "ModD: sem_give -> 0x45E45A04"
+    },
+    {
+      "address": "0x000103d4",
+      "plate": "ModD: sem_take -> 0x45E45A34"
+    },
+    {
+      "address": "0x000103dc",
+      "plate": "ModD: timeout_wait -> 0x45E45A6C"
+    },
+    {
+      "address": "0x000103e4",
+      "plate": "ModD: priority_acquire -> 0x45E45B94"
+    },
+    {
+      "address": "0x000103ec",
+      "plate": "ModD: cleanup_release -> 0x45E45BF4"
+    },
+    {
+      "address": "0x000103fc",
+      "plate": "ModD: alloc_sync_a -> 0x45E45F10"
+    },
+    {
+      "address": "0x00010404",
+      "plate": "ModD: alloc_sync_b -> 0x45E45DFC"
+    },
+    {
+      "address": "0x00010424",
+      "plate": "ModD: bulk_sync_a -> 0x45E45F48"
+    },
+    {
+      "address": "0x0001042c",
+      "plate": "ModD: bulk_sync_b -> 0x45E45E40"
+    },
+    {
+      "address": "0x00010760",
+      "plate": "Memory allocator \u2014 uses ModD semaphores for synchronization"
+    },
+    {
+      "address": "0x00010ad0",
+      "plate": "Memory free \u2014 checks pool headers, calls ModD for sync"
+    }
+  ]
+}

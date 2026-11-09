@@ -1,0 +1,268 @@
+<svg viewBox="0 0 880 720" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','Menlo','Consolas',monospace" font-size="11">
+  <defs>
+    <style>
+      .title { font-size: 16px; font-weight: bold; fill: #2d3748; }
+      .subtitle { font-size: 12px; fill: #718096; }
+      .domain-label { font-size: 13px; font-weight: bold; fill: #2d3748; }
+      .cpu-label { font-size: 10px; fill: #4a5568; }
+      .addr { font-size: 9.5px; fill: #805ad5; font-family: 'SF Mono','Menlo','Consolas',monospace; }
+      .mem-label { font-size: 9.5px; fill: #2d3748; }
+      .mem-detail { font-size: 8.5px; fill: #718096; }
+      .periph-label { font-size: 10px; fill: #2d3748; }
+      .periph-detail { font-size: 8.5px; fill: #718096; }
+      .boot-label { font-size: 9px; fill: #2d3748; font-weight: 600; }
+      .boot-detail { font-size: 8px; fill: #718096; }
+      .arrow { fill: none; stroke: #a0aec0; stroke-width: 1.5; marker-end: url(#arrowhead); }
+      .arrow-periph { fill: none; stroke: #cbd5e0; stroke-width: 1; stroke-dasharray: 4,3; }
+      .link-line { fill: none; stroke: #e53e3e; stroke-width: 1.5; stroke-dasharray: 6,3; }
+      .section-label { font-size: 10px; fill: #a0aec0; font-weight: 600; letter-spacing: 1px; }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#a0aec0"/>
+    </marker>
+    <marker id="arrowhead-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#e53e3e"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="440" y="28" text-anchor="middle" class="title">Epson XP-442 — SoC09S Dual-Domain Architecture</text>
+  <text x="440" y="44" text-anchor="middle" class="subtitle">ARM1136JF-S (T-Kernel RTOS) + ARM926EJ-S (Linux)</text>
+
+  <!-- ================================================================== -->
+  <!-- BOOT CHAIN — horizontal across top                                  -->
+  <!-- ================================================================== -->
+  <text x="30" y="72" class="section-label">BOOT CHAIN</text>
+
+  <!-- Boot step boxes -->
+  <g transform="translate(30, 80)">
+    <!-- Step 1: Mask ROM -->
+    <rect x="0" y="0" width="110" height="36" rx="4" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="55" y="15" text-anchor="middle" class="boot-label">SoC Mask ROM</text>
+    <text x="55" y="27" text-anchor="middle" class="boot-detail">on-die bootloader</text>
+
+    <!-- Arrow -->
+    <line x1="110" y1="18" x2="130" y2="18" class="arrow"/>
+
+    <!-- Step 2: CROM Decompress -->
+    <rect x="132" y="0" width="110" height="36" rx="4" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="187" y="15" text-anchor="middle" class="boot-label">CROM Decomp</text>
+    <text x="187" y="27" text-anchor="middle" class="boot-detail">Huffman + LZ77</text>
+
+    <line x1="242" y1="18" x2="262" y2="18" class="arrow"/>
+
+    <!-- Step 3: MiLL -->
+    <rect x="264" y="0" width="110" height="36" rx="4" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="319" y="15" text-anchor="middle" class="boot-label">MiLL</text>
+    <text x="319" y="27" text-anchor="middle" class="boot-detail">ROM → RAM copy</text>
+
+    <line x1="374" y1="18" x2="394" y2="18" class="arrow"/>
+
+    <!-- Step 4: BooSt -->
+    <rect x="396" y="0" width="110" height="36" rx="4" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="451" y="15" text-anchor="middle" class="boot-label">BooSt</text>
+    <text x="451" y="27" text-anchor="middle" class="boot-detail">CP15 / MMU init</text>
+
+    <line x1="506" y1="18" x2="526" y2="18" class="arrow"/>
+
+    <!-- Step 5: T-Kernel Init -->
+    <rect x="528" y="0" width="110" height="36" rx="4" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="583" y="15" text-anchor="middle" class="boot-label">T-Kernel Init</text>
+    <text x="583" y="27" text-anchor="middle" class="boot-detail">RTOS scheduler</text>
+
+    <line x1="638" y1="18" x2="658" y2="18" class="arrow"/>
+
+    <!-- Step 6: Jump -->
+    <rect x="660" y="0" width="120" height="36" rx="4" fill="#ebf8ff" stroke="#90cdf4" stroke-width="1"/>
+    <text x="720" y="15" text-anchor="middle" class="boot-label">App Entry</text>
+    <text x="720" y="27" text-anchor="middle" class="addr">0x40007BC0</text>
+  </g>
+
+  <!-- ================================================================== -->
+  <!-- RTOS DOMAIN — left/center                                           -->
+  <!-- ================================================================== -->
+  <rect x="24" y="135" width="520" height="570" rx="6" fill="none" stroke="#4299e1" stroke-width="1.5" stroke-dasharray="none"/>
+  <rect x="24" y="135" width="520" height="24" rx="6" fill="#ebf8ff" stroke="none"/>
+  <rect x="24" y="153" width="520" height="6" fill="#ebf8ff" stroke="none"/>
+  <text x="34" y="152" class="domain-label" fill="#2b6cb0">RTOS Domain — ARM1136JF-S</text>
+  <text x="410" y="152" class="cpu-label">T-Kernel + Epson extensions</text>
+
+  <!-- MEMORY MAP column -->
+  <text x="40" y="180" class="section-label">MEMORY MAP</text>
+
+  <!-- Memory regions — stacked blocks -->
+  <g transform="translate(40, 188)">
+    <!-- Kernel -->
+    <rect x="0" y="0" width="230" height="32" rx="3" fill="#fff5f5" stroke="#feb2b2" stroke-width="1"/>
+    <text x="6" y="13" class="addr">0x00000000</text>
+    <text x="6" y="25" class="mem-label">Kernel (rtos_core.bin)</text>
+    <text x="195" y="25" class="mem-detail">1.1 MB</text>
+
+    <!-- MMU Page Table -->
+    <rect x="0" y="36" width="230" height="24" rx="3" fill="#fefcbf" stroke="#ecc94b" stroke-width="0.75"/>
+    <text x="6" y="49" class="addr">0x0010B000</text>
+    <text x="100" y="49" class="mem-label">MMU Page Table</text>
+    <text x="205" y="49" class="mem-detail">16K</text>
+
+    <!-- Kernel RAM -->
+    <rect x="0" y="64" width="230" height="28" rx="3" fill="#ebf8ff" stroke="#90cdf4" stroke-width="1"/>
+    <text x="6" y="77" class="addr">0x40000000</text>
+    <text x="100" y="77" class="mem-label">Kernel RAM</text>
+
+    <!-- CROM Seg 0 -->
+    <rect x="0" y="96" width="230" height="32" rx="3" fill="#f0fff4" stroke="#9ae6b4" stroke-width="1"/>
+    <text x="6" y="109" class="addr">0x45430000</text>
+    <text x="6" y="121" class="mem-label">CROM Seg 0 — Print Engine</text>
+    <text x="195" y="121" class="mem-detail">514K</text>
+
+    <!-- StreamA -->
+    <rect x="0" y="132" width="230" height="32" rx="3" fill="#f0fff4" stroke="#9ae6b4" stroke-width="1"/>
+    <text x="6" y="145" class="addr">0x45900000</text>
+    <text x="6" y="157" class="mem-label">StreamA — Modules A–D</text>
+    <text x="195" y="157" class="mem-detail">5.6M</text>
+
+    <!-- StreamB -->
+    <rect x="0" y="168" width="230" height="32" rx="3" fill="#faf5ff" stroke="#d6bcfa" stroke-width="1"/>
+    <text x="6" y="181" class="addr">0x46000000</text>
+    <text x="6" y="193" class="mem-label">StreamB — Panel UI</text>
+    <text x="195" y="193" class="mem-detail">4.1M</text>
+
+    <!-- Kernel RAM Mirror -->
+    <rect x="0" y="204" width="230" height="28" rx="3" fill="#ebf8ff" stroke="#90cdf4" stroke-width="1"/>
+    <text x="6" y="217" class="addr">0x80000000</text>
+    <text x="100" y="217" class="mem-label">Kernel RAM Mirror</text>
+
+    <!-- IRQ Controller -->
+    <rect x="0" y="236" width="230" height="24" rx="3" fill="#fff5f5" stroke="#feb2b2" stroke-width="0.75"/>
+    <text x="6" y="249" class="addr">0xE0001000</text>
+    <text x="100" y="249" class="mem-label">IRQ Controller</text>
+
+    <!-- ADC -->
+    <rect x="0" y="264" width="230" height="24" rx="3" fill="#fffaf0" stroke="#fbd38d" stroke-width="0.75"/>
+    <text x="6" y="277" class="addr">0xF0080000</text>
+    <text x="100" y="277" class="mem-label">ADC (buttons)</text>
+
+    <!-- SPI -->
+    <rect x="0" y="292" width="230" height="24" rx="3" fill="#fffaf0" stroke="#fbd38d" stroke-width="0.75"/>
+    <text x="6" y="305" class="addr">0xF0084500</text>
+    <text x="100" y="305" class="mem-label">SPI (LCD)</text>
+  </g>
+
+  <!-- RTOS RESPONSIBILITIES — right column inside domain -->
+  <text x="300" y="180" class="section-label">RESPONSIBILITIES</text>
+
+  <g transform="translate(300, 190)">
+    <rect x="0" y="0" width="225" height="26" rx="3" fill="#f0fff4" stroke="#9ae6b4" stroke-width="1"/>
+    <text x="10" y="17" class="periph-label">Print Engine Control</text>
+
+    <rect x="0" y="32" width="225" height="26" rx="3" fill="#f0fff4" stroke="#9ae6b4" stroke-width="1"/>
+    <text x="10" y="49" class="periph-label">Scanner Driver</text>
+
+    <rect x="0" y="64" width="225" height="26" rx="3" fill="#faf5ff" stroke="#d6bcfa" stroke-width="1"/>
+    <text x="10" y="81" class="periph-label">Panel UI (C++ UIWidget)</text>
+
+    <rect x="0" y="96" width="225" height="26" rx="3" fill="#ebf8ff" stroke="#90cdf4" stroke-width="1"/>
+    <text x="10" y="113" class="periph-label">Task Scheduling (T-Kernel)</text>
+
+    <rect x="0" y="128" width="225" height="26" rx="3" fill="#ebf8ff" stroke="#90cdf4" stroke-width="1"/>
+    <text x="10" y="145" class="periph-label">IPC — Semaphores / Mailboxes</text>
+
+    <rect x="0" y="160" width="225" height="26" rx="3" fill="#fffaf0" stroke="#fbd38d" stroke-width="1"/>
+    <text x="10" y="177" class="periph-label">LCD / Button I/O</text>
+  </g>
+
+  <!-- ================================================================== -->
+  <!-- PERIPHERALS — bottom-left inside RTOS domain                        -->
+  <!-- ================================================================== -->
+  <text x="300" y="420" class="section-label">PERIPHERALS</text>
+
+  <g transform="translate(300, 430)">
+    <!-- LCD -->
+    <rect x="0" y="0" width="220" height="46" rx="4" fill="#fff" stroke="#a0aec0" stroke-width="1"/>
+    <text x="10" y="16" class="periph-label">LCD Display</text>
+    <text x="10" y="30" class="periph-detail">ILI9325 — 240×320 QVGA TFT</text>
+    <text x="10" y="41" class="periph-detail">RGB565 via SPI @ 0xF0084500</text>
+
+    <!-- Buttons -->
+    <rect x="0" y="52" width="220" height="40" rx="4" fill="#fff" stroke="#a0aec0" stroke-width="1"/>
+    <text x="10" y="68" class="periph-label">Buttons</text>
+    <text x="10" y="82" class="periph-detail">Resistor ladder → ADC @ 0xF0080000</text>
+
+    <!-- Flash -->
+    <rect x="0" y="98" width="220" height="32" rx="4" fill="#fff" stroke="#a0aec0" stroke-width="1"/>
+    <text x="10" y="114" class="periph-label">Flash Storage</text>
+    <text x="10" y="124" class="periph-detail">Firmware + NVRAM config</text>
+
+    <!-- UART -->
+    <rect x="0" y="136" width="220" height="32" rx="4" fill="#fff" stroke="#a0aec0" stroke-width="1"/>
+    <text x="10" y="152" class="periph-label">UART</text>
+    <text x="10" y="162" class="periph-detail">Debug console (root, no password)</text>
+
+    <!-- Power button -->
+    <rect x="0" y="174" width="220" height="32" rx="4" fill="#fff" stroke="#a0aec0" stroke-width="1"/>
+    <text x="10" y="190" class="periph-label">Power Button</text>
+    <text x="10" y="200" class="periph-detail">Separate GPIO @ 0xF0084636</text>
+  </g>
+
+  <!-- Connecting lines from memory map to peripherals -->
+  <line x1="270" y1="478" x2="300" y2="468" class="arrow-periph"/>
+  <line x1="270" y1="484" x2="300" y2="497" class="arrow-periph"/>
+
+  <!-- ================================================================== -->
+  <!-- LINUX DOMAIN — right side                                           -->
+  <!-- ================================================================== -->
+  <rect x="570" y="135" width="290" height="300" rx="6" fill="none" stroke="#48bb78" stroke-width="1.5"/>
+  <rect x="570" y="135" width="290" height="24" rx="6" fill="#f0fff4" stroke="none"/>
+  <rect x="570" y="153" width="290" height="6" fill="#f0fff4" stroke="none"/>
+  <text x="580" y="152" class="domain-label" fill="#276749">Linux Domain — ARM926EJ-S</text>
+
+  <g transform="translate(586, 175)">
+    <rect x="0" y="0" width="258" height="26" rx="3" fill="#f0fff4" stroke="#9ae6b4" stroke-width="1"/>
+    <text x="10" y="17" class="periph-label">Linux 3.14.79 Kernel</text>
+
+    <rect x="0" y="32" width="258" height="26" rx="3" fill="#f0fff4" stroke="#9ae6b4" stroke-width="1"/>
+    <text x="10" y="49" class="periph-label">WiFi / Ethernet Networking</text>
+
+    <rect x="0" y="64" width="258" height="26" rx="3" fill="#f0fff4" stroke="#9ae6b4" stroke-width="1"/>
+    <text x="10" y="81" class="periph-label">HTTP Admin Interface</text>
+
+    <rect x="0" y="96" width="258" height="26" rx="3" fill="#f0fff4" stroke="#9ae6b4" stroke-width="1"/>
+    <text x="10" y="113" class="periph-label">ENPC Discovery Protocol</text>
+
+    <rect x="0" y="128" width="258" height="26" rx="3" fill="#f0fff4" stroke="#9ae6b4" stroke-width="1"/>
+    <text x="10" y="145" class="periph-label">IPP / Print Job Reception</text>
+
+    <rect x="0" y="160" width="258" height="26" rx="3" fill="#f0fff4" stroke="#9ae6b4" stroke-width="1"/>
+    <text x="10" y="177" class="periph-label">SquashFS Root Filesystem</text>
+
+    <rect x="0" y="192" width="258" height="26" rx="3" fill="#f0fff4" stroke="#9ae6b4" stroke-width="1"/>
+    <text x="10" y="209" class="periph-label">nwsoc — Network SoC Module</text>
+  </g>
+
+  <!-- ================================================================== -->
+  <!-- INTER-DOMAIN LINK                                                   -->
+  <!-- ================================================================== -->
+  <line x1="544" y1="280" x2="570" y2="280" stroke="#e53e3e" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowhead-red)"/>
+  <line x1="570" y1="290" x2="544" y2="290" stroke="#e53e3e" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowhead-red)"/>
+  <text x="557" y="312" text-anchor="middle" font-size="8" fill="#e53e3e" font-weight="600">IPC</text>
+
+  <!-- Legend -->
+  <g transform="translate(580, 460)">
+    <text x="0" y="0" class="section-label">LEGEND</text>
+    <rect x="0" y="10" width="14" height="10" rx="2" fill="#fff5f5" stroke="#feb2b2" stroke-width="0.75"/>
+    <text x="20" y="19" class="mem-detail">Kernel / IRQ</text>
+    <rect x="0" y="26" width="14" height="10" rx="2" fill="#f0fff4" stroke="#9ae6b4" stroke-width="0.75"/>
+    <text x="20" y="35" class="mem-detail">Application code</text>
+    <rect x="0" y="42" width="14" height="10" rx="2" fill="#ebf8ff" stroke="#90cdf4" stroke-width="0.75"/>
+    <text x="20" y="51" class="mem-detail">RAM / scheduler</text>
+    <rect x="0" y="58" width="14" height="10" rx="2" fill="#faf5ff" stroke="#d6bcfa" stroke-width="0.75"/>
+    <text x="20" y="67" class="mem-detail">Panel UI</text>
+    <rect x="0" y="74" width="14" height="10" rx="2" fill="#fffaf0" stroke="#fbd38d" stroke-width="0.75"/>
+    <text x="20" y="83" class="mem-detail">Peripheral I/O</text>
+    <line x1="0" y1="94" x2="14" y2="94" stroke="#e53e3e" stroke-width="1.5" stroke-dasharray="4,2"/>
+    <text x="20" y="98" class="mem-detail">Inter-domain link</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="440" y="715" text-anchor="middle" font-size="9" fill="#a0aec0">Epson XP-442 (SoC09S) — Reverse-engineered architecture · github.com</text>
+</svg>

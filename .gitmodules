@@ -1,0 +1,9 @@
+[submodule "epson-reversing"]
+	path = epson-reversing
+	url = https://github.com/abrasive/epson-reversing
+[submodule "epson_print_conf"]
+	path = epson_print_conf
+	url = https://github.com/Ircama/epson_print_conf
+[submodule "Epson-Waste-Reset"]
+	path = Epson-Waste-Reset
+	url = https://github.com/RxNaison/Epson-Waste-Reset

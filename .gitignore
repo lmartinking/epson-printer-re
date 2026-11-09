@@ -1,0 +1,38 @@
+# Extracted / generated firmware artifacts
+/rcx_output
+/squashfs_rootfs1
+/squashfs_rootfs2
+/FWF729TL_extracted/
+/enpc_schema
+/eeprom_baseline.txt
+
+# Firmware binaries
+*.efu
+*.rcx
+*.exe
+*.bin
+
+# Ghidra project files
+*.gpr
+*.rep/
+*.lock
+*.lock~
+xp-442.rep/
+
+
+# Local dev tooling
+/bridge_mcp_ghidra/
+/.mcp.json
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Stray file
+/-
+
+# Device-specific security findings (kept local, not published)
+/VULNS.md
