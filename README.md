@@ -178,3 +178,21 @@ Full steps, including a `--dry-run` preview and what is and isn't covered, are i
 - [abrasive/epson-reversing](https://github.com/abrasive/epson-reversing) for the `rcx_unpack` and `uncrom.py` tools
 - [Ircama/epson_print_conf](https://github.com/Ircama/epson_print_conf) for D4/SNMP protocol reference
 - [RxNaison/Epson-Waste-Reset](https://github.com/RxNaison/Epson-Waste-Reset) for the waste-ink counter analysis in `notes/EWR_ANALYSIS.md`
+
+## Licence
+
+The code (`*.py`, `*.sh`) is under the [MIT License](LICENCE). The documentation (`*.md`, `architecture-diagram.svg` and `annotations/`) is under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). See [LICENCE](LICENCE) for the full terms.
+
+This project is not affiliated with or endorsed by Seiko Epson Corporation. "Epson" and the product names are Epson's trademarks. The firmware is Epson's and is not in this repo, and any Epson strings or disassembly quoted in the docs remain Epson's.
+
+### Third-party code
+
+The git submodules are separate projects. They are not covered by this repo's licence, and each keeps its own:
+
+| Submodule | Licence |
+|-----------|---------|
+| [`epson_print_conf`](https://github.com/Ircama/epson_print_conf) | [EUPL-1.2](https://github.com/Ircama/epson_print_conf/blob/main/LICENSE) |
+| [`Epson-Waste-Reset`](https://github.com/RxNaison/Epson-Waste-Reset) | [Apache-2.0](https://github.com/RxNaison/Epson-Waste-Reset/blob/main/LICENSE) |
+| [`epson-reversing`](https://github.com/abrasive/epson-reversing) | No repository licence. `uncrom.c` and `rcx_correct` are marked public domain; the other files carry no notice. |
+
+The scripts here import or call these projects but do not copy their code.
