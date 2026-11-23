@@ -195,4 +195,4 @@ The git submodules are separate projects. They are not covered by this repo's li
 | [`Epson-Waste-Reset`](https://github.com/RxNaison/Epson-Waste-Reset) | [Apache-2.0](https://github.com/RxNaison/Epson-Waste-Reset/blob/main/LICENSE) |
 | [`epson-reversing`](https://github.com/abrasive/epson-reversing) | No repository licence. `uncrom.c` and `rcx_correct` are marked public domain; the other files carry no notice. |
 
-The scripts here import or call these projects but do not copy their code. `epson-reversing` is kept as a submodule rather than copied into this repo because most of its files have no licence.
+The scripts here import or call these projects but do not copy their code.
